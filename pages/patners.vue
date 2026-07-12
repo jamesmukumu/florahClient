@@ -37,7 +37,7 @@
           <p
             class="mx-auto max-w-4xl text-base leading-8 text-slate-600 md:text-lg"
           >
-            At Flora C & Company Advocates, our strength lies in a team of dedicated, forward-thinking, and highly skilled lawyers committed to delivering exceptional legal services. Combining deep legal expertise with innovative thinking, we provide strategic, practical, and results-driven solutions across a broad range of practice areas. Our client-focused approach enables us to address complex legal challenges with precision, professionalism, and unwavering commitment to excellence.
+            At Flora C & Company Advocates, our strength lies in a team of dedicated, forward-thinking, and highly skilled lawyers committed to delivering exceptional legal services.
           </p>
         </div>
 
