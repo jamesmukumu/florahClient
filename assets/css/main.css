@@ -1,0 +1,62 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+
+@theme {
+  --font-sans: "EB Garamond", serif;
+  --font-gabriela: "Gabriela", serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+  }
+}
+
+/* Global body styles */
+body {
+  @apply bg-gray-50;
+}
+
+
+/* Components */
+@layer components {
+  .btn {
+    @apply bg-[#15355B] text-white px-3 py-2 rounded-md text-sm inline-block;
+  }
+
+  .card {
+    @apply p-3 rounded-md bg-white shadow-md h-full;
+  }
+}
+.text-pr {
+  color: #15355B;
+}
+
+
+/* Custom utilities for your brand color */
+@layer utilities {
+  /* Text color */
+  .text-pr {
+    @apply text-[#15355B];
+  }
+
+  /* Background color */
+  .bg-pr {
+    @apply bg-[#15355B];
+  }
+
+  /* Border color */
+  .border-pr {
+    @apply border-[#15355B];
+  }
+
+  /* Hover states */
+  .hover\:bg-pr:hover {
+    @apply bg-[#15355B];
+  }
+
+  .hover\:text-pr:hover {
+    @apply text-[#15355B];
+  }
+}
