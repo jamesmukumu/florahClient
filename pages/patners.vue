@@ -37,10 +37,7 @@
           <p
             class="mx-auto max-w-4xl text-base leading-8 text-slate-600 md:text-lg"
           >
-            At Ahmednasir Abdullahi Advocates LLP we are proud to have a team of
-            passionate, creative and innovative lawyers. Our lawyers have the
-            unique ability to deliver sophisticated representation to our
-            clients on diverse practice areas.
+            At Flora C & Company Advocates, our strength lies in a team of dedicated, forward-thinking, and highly skilled lawyers committed to delivering exceptional legal services. Combining deep legal expertise with innovative thinking, we provide strategic, practical, and results-driven solutions across a broad range of practice areas. Our client-focused approach enables us to address complex legal challenges with precision, professionalism, and unwavering commitment to excellence.
           </p>
         </div>
 
