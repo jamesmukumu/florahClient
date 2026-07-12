@@ -121,6 +121,7 @@
       <ul class="flex flex-col p-6 space-y-6 text-lg font-medium">
         <li><NuxtLink to="/" @click="toggleMenu">Home</NuxtLink></li>
         <li><NuxtLink to="/about">About Us</NuxtLink></li>
+        <li><NuxtLink to="/patners">Our Team</NuxtLink></li>
         <li><NuxtLink to="/practice/areas">Practice Areas</NuxtLink></li>
         <li><NuxtLink to="/legal-articles">Law Articles</NuxtLink></li>
       

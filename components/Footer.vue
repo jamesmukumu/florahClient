@@ -67,6 +67,10 @@
                   <a href="/about"
                      class="hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded transition-all">About Us</a>
                </li>
+                      <li>
+                  <a href="/patners"
+                     class="hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded transition-all">Our Team</a>
+               </li>
                <li>
                   <a href="/legal-articles"
                      class="hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded transition-all">Legal Insights</a>
