@@ -11,7 +11,15 @@ export default defineNuxtConfig({
     "@vercel/speed-insights",
     "@vercel/analytics",
   ],
-
+colorMode:{
+preference: 'light',
+fallback: 'light',
+classSuffix: ''
+},
+site:{
+url:"http://localhost:3000",
+name:"Flora C Advocates",
+},
   css: ["~/assets/css/main.css"],
 
   app: {

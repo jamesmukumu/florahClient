@@ -27,12 +27,12 @@
   challenges and long-term objectives.
             </p>
 
-              <p class="text-lg leading-relaxed text-gray-700 py-4 md:text-xl">
+              <!-- <p class="text-lg leading-relaxed text-gray-700 py-4 md:text-xl">
               Whether advising individuals, businesses, or institutions, we are dedicated
   to delivering responsive, ethical, and results-driven legal services. By
   building lasting relationships founded on trust, professionalism, and
   excellence, we strive to be a reliable legal partner at every stage.
-            </p>
+            </p> -->
 
 
             <NuxtLink

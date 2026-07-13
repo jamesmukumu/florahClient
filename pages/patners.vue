@@ -37,7 +37,9 @@
           <p
             class="mx-auto max-w-4xl text-base leading-8 text-slate-600 md:text-lg"
           >
-            At Flora C & Company Advocates, our strength lies in a team of dedicated, forward-thinking, and highly skilled lawyers committed to delivering exceptional legal services.
+            At Flora C & Company Advocates, our strength lies in a team of
+            dedicated, forward-thinking, and highly skilled lawyers committed to
+            delivering exceptional legal services.
           </p>
         </div>
 
@@ -45,11 +47,11 @@
           <article
             v-for="lawyer in patnersData"
             :key="lawyer.name"
-            class="group isolate bg-white text-center transition-transform duration-300 hover:-translate-y-1"
+            class="group isolate flex flex-col bg-white text-center transition-transform duration-300 hover:-translate-y-1"
           >
             <NuxtLink
               :to="`/partner/${lawyer.slug}`"
-              class="relative aspect-[4/5] cursor-pointer overflow-hidden bg-white"
+              class="relative aspect-[4/5] cursor-pointer overflow-hidden bg-white flex-shrink-0"
             >
               <img
                 :src="`${config.public.appUrl}/${lawyer.patnersImage}`"
@@ -58,12 +60,12 @@
               />
             </NuxtLink>
 
-            <div class="relative z-10 bg-white pt-3">
+            <div class="relative z-10 bg-white px-3 py-4">
               <h3 class="text-xl text-bolder text-slate-900 md:text-2xl">
                 {{ lawyer.name }}
               </h3>
               <p
-                class="mt-1 text-sm uppercase tracking-[0.18em] text-slate-500"
+                class="mt-2 text-sm uppercase tracking-[0.18em] text-slate-700"
               >
                 {{ lawyer.title }}
               </p>
@@ -81,5 +83,4 @@ let config = useRuntimeConfig();
 let { data, pending, error } = await useFetch("/api/patners");
 
 patnersData.value = data.value;
-console.log(data.value);
 </script>

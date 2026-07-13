@@ -89,7 +89,7 @@
 
               <div>
                 <NuxtLink
-                :to="`/article/${article.slug}`"
+                :to="`/legal-article/${article.slug}`"
                   class="text-xl leading-snug font-medium text-black"
                 >
                   {{ article.title }}

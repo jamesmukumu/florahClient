@@ -21,16 +21,25 @@
           </div>
 
           <div class="flex items-center space-x-5">
-           <a href="https://m.facebook.com/pages/Flora-C-Company-Advocates/103302635872156/?locale=hi_IN" class="text-xl cursor-pointer">
-             <UIcon name="mdi:facebook"  />
-           </a>
-           <a href="https://ke.linkedin.com/in/flora-c-advocates-924463250" class="text-xl cursor-pointer">
-             <UIcon name="mdi:instagram"  />
-           </a>
-            
-          <a href="https://www.instagram.com/floracadvocates/" class="text-xl cursor-pointer">
-              <UIcon name="mdi:linkedin"  />
-          </a>
+            <a
+              href="https://m.facebook.com/pages/Flora-C-Company-Advocates/103302635872156/?locale=hi_IN"
+              class="text-xl cursor-pointer"
+            >
+              <UIcon name="mdi:facebook" />
+            </a>
+            <a
+              href="https://ke.linkedin.com/in/flora-c-advocates-924463250"
+              class="text-xl cursor-pointer"
+            >
+              <UIcon name="mdi:instagram" />
+            </a>
+
+            <a
+              href="https://www.instagram.com/floracadvocates/"
+              class="text-xl cursor-pointer"
+            >
+              <UIcon name="mdi:linkedin" />
+            </a>
           </div>
         </div>
       </div>
@@ -80,7 +89,10 @@
 
           <NuxtLink
             to="/legal-articles"
-            :class="[navLinkClass, isActive('/legal-articles') ? activeLinkClass : '']"
+            :class="[
+              navLinkClass,
+              isActive('/legal-articles') ? activeLinkClass : '',
+            ]"
           >
             Law Articles
           </NuxtLink>
@@ -92,7 +104,7 @@
 
         <!-- Hamburger -->
         <button @click="toggleMenu" :class="mobileMenuButtonClass">
-      <UIcon name="ic:sharp-menu"/>
+          <UIcon name="ic:sharp-menu" />
         </button>
       </div>
     </header>
@@ -114,20 +126,28 @@
       <div class="flex justify-between items-center p-6 border-b">
         <h2 class="text-lg font-semibold">Menu</h2>
         <button @click="toggleMenu" class="text-2xl">
-          <i class="fa-solid fa-xmark"></i>
+          <UIcon name="material-symbols:close" />
         </button>
       </div>
 
       <ul class="flex flex-col p-6 space-y-6 text-lg font-medium">
-        <li><NuxtLink to="/" @click="toggleMenu">Home</NuxtLink></li>
-        <li><NuxtLink to="/about">About Us</NuxtLink></li>
-        <li><NuxtLink to="/patners">Our Team</NuxtLink></li>
-        <li><NuxtLink to="/practice/areas">Practice Areas</NuxtLink></li>
-        <li><NuxtLink to="/legal-articles">Law Articles</NuxtLink></li>
-      
-      
+        <li><NuxtLink to="/" @click="closeMenu">Home</NuxtLink></li>
+        <li><NuxtLink to="/about" @click="closeMenu">About Us</NuxtLink></li>
+        <li><NuxtLink to="/patners" @click="closeMenu">Our Team</NuxtLink></li>
+        <li>
+          <NuxtLink to="/practice/areas" @click="closeMenu"
+            >Practice Areas</NuxtLink
+          >
+        </li>
+        <li>
+          <NuxtLink to="/legal-articles" @click="closeMenu"
+            >Law Articles</NuxtLink
+          >
+        </li>
+
         <NuxtLink
-          to="/contact"
+          to="/book/appointment"
+          @click="closeMenu"
           class="px-6 py-2 rounded bg-pr hover:bg-pr transition text-sm font-semibold text-white"
         >
           Contact Us
@@ -138,8 +158,6 @@
 </template>
 
 <script setup>
-
-
 const isOpen = ref(false);
 const isTransparent = ref(false);
 const route = useRoute();
@@ -151,6 +169,10 @@ const isActive = (path) => {
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
+};
+
+const closeMenu = () => {
+  isOpen.value = false;
 };
 
 const updateHeaderState = () => {

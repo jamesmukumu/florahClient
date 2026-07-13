@@ -61,13 +61,13 @@
             <!-- Content -->
             <div class="lg:pr-14 lg:border-r border-black/5">
               <h2
-                class="font-serif text-4xl font-bold leading-tight text-[#072C63] lg:text-[46px]"
+                class="text-4xl font-bold leading-tight text-black lg:text-2xl"
               >
                 {{ practice.title }}
               </h2>
 
               <p
-                class="mt-6 max-w-2xl text-[22px] leading-relaxed"
+                class="mt-6 max-w-2xl  leading-relaxed"
                 v-html="practice.overview"
               ></p>
             </div>

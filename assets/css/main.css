@@ -13,10 +13,7 @@
   }
 }
 
-/* Global body styles */
-body {
-  @apply bg-gray-50;
-}
+
 
 
 /* Components */
@@ -32,7 +29,7 @@ body {
 .text-pr {
   color: #15355B;
 }
-
+  
 
 /* Custom utilities for your brand color */
 @layer utilities {
