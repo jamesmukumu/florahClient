@@ -10,7 +10,11 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
     "@vercel/speed-insights",
     "@vercel/analytics",
+    "@nuxtjs/turnstile",
   ],
+
+
+  
 colorMode:{
 preference: 'light',
 fallback: 'light',
@@ -41,11 +45,17 @@ name:"Flora C Advocates",
       ],
     },
   },
-
+turnstile:{
+siteKey:"0x4AAAAAAD1rdQ7ADy1oUWox"
+},
   runtimeConfig: {
     public: {
       appUrl: "https://florahadvocates-production-o7ug2i.laravel.cloud/storage",
     },
+    turnstile:{
+     secretKey:process.env.TURNSTILE_SECRET_KEY
+    },
+    
     db:{
     host:process.env.DB_HOST,
     port:process.env.DB_PORT,

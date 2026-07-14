@@ -79,7 +79,10 @@
                   <a href="/practice/areas"
                      class="hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded transition-all">Practice Areas</a>
                </li>
-          
+                 <li>
+                  <a href="/privacy-policy"
+                     class="hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded transition-all">Privacy Policy</a>
+               </li>
             </ul>
          </div>
 
@@ -110,10 +113,10 @@
           </svg>
           <div>
             <p class="opacity-70 text-m">Office</p>
-            <p class="leading-snug">
+            <a href="https://maps.app.goo.gl/qszVVSq9dyns9RTy8" target="_blank" class="leading-snug">
               General Conference Building,<br />3rd Riverside Drive, 2nd Floor,
               Kenya.
-            </p>
+            </a>
           </div>
         </div>
                   </a>
@@ -121,7 +124,7 @@
 
 
                <li>
-                  <a href="#"
+                  <a target="_blank" href="tel:+254 714 416 325"
                      class="hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded transition-all">
                          <div class="flex items-center gap-3 text-sm">
           <svg
@@ -139,7 +142,7 @@
           </svg>
           <div>
             <p class="opacity-70 text-m">Phone</p>
-            <p>+254 714 416 325</p>
+            <a target="_blank" href="tel:+254 714 416 325">+254 714 416 325</a>
           </div>
         </div>
                   </a>
@@ -147,7 +150,8 @@
           
 
                <li>
-                  <a href="#"
+                  <a href="mailto:litigation@floracadvocates.co.ke"
+                  target="_blank"
                      class="hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded transition-all">
                         <div class="flex items-center gap-3 text-sm">
           <svg
@@ -163,9 +167,10 @@
               d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
             />
           </svg>
+
           <div class="break-all">
             <p class="opacity-70 text-m">General</p>
-            <p>litigation@floraadvocates.co.ke</p>
+            <a target="_blank" href="mailto:litigation@floraadvocates.co.ke">litigation@floraadvocates.co.ke</a>
           </div>
         </div>
                   </a>

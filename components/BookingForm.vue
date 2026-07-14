@@ -4,7 +4,9 @@
   >
     <!-- LEFT: Contact Form -->
     <div class="flex-1 bg-white p-6 md:p-10">
-      <h2 class="text-2xl font-semibold mb-2">Book An Appointment</h2>
+      <h2 class="text-2xl text-black font-semibold mb-2">
+        Book An Appointment
+      </h2>
       <p class="text-sm text-gray-500 mb-8">
         Fill in the form and we'll get back to you shortly.
       </p>
@@ -72,16 +74,26 @@
           </p>
         </div>
 
+        <div>
+          <NuxtTurnstile ref="turnstile" v-model="token" />
+          <p v-if="errors.token" class="text-red-500 text-xs mt-1">
+            {{ errors.token }}
+          </p>
+        </div>
+
         <!-- SUBMIT -->
-        <div class="pt-2">
+        <div v-if="isTurnstileVerified" class="pt-2">
           <button
             type="submit"
-            :disabled="save"
+            :disabled="save || !isTurnstileVerified"
             class="w-full md:w-auto bg-pr hover:bg-pr cursor-pointer text-white text-sm font-medium px-8 py-2.5 rounded-md transition disabled:opacity-50"
           >
             {{ save ? "Sending..." : "Submit" }}
           </button>
         </div>
+        <p v-else class="text-s text-red-500">
+          Complete the verification above to reveal the submit button.
+        </p>
       </form>
     </div>
 
@@ -93,7 +105,6 @@
         Contact Information
       </h3>
 
-      <!-- Telephone & Phone -->
       <div class="flex flex-col gap-3">
         <div class="flex items-center gap-2 mb-1">
           <svg
@@ -192,22 +203,6 @@
             <p>litigation@floraadvocates.co.ke</p>
           </div>
         </div>
-        <div class="flex items-center gap-3 text-sm">
-          <svg
-            class="w-4 h-4 shrink-0 opacity-75"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.8"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-            />
-          </svg>
-     
-        </div>
       </div>
 
       <!-- Address & Hours -->
@@ -235,7 +230,7 @@
             >Address &amp; Hours</span
           >
         </div>
-        
+
         <div class="flex items-start gap-3 text-sm">
           <svg
             class="w-4 h-4 shrink-0 mt-0.5 opacity-75"
@@ -280,7 +275,7 @@
           </svg>
           <div>
             <p class="opacity-70 text-xs">Postal</p>
-            <p>P.O. Box 67145-00200, Nairobi, Kenya.</p>
+            <p>P.O. Box 6377-00100, Nairobi, Kenya.</p>
           </div>
         </div>
         <div class="flex items-center gap-3 text-sm">
@@ -316,7 +311,7 @@
         >
           <!-- Facebook -->
           <a
-          target="_blank"
+            target="_blank"
             href="https://m.facebook.com/pages/Flora-C-Company-Advocates/103302635872156/?locale=hi_IN"
             class="flex-1 flex flex-col items-center justify-center py-3 gap-1 hover:bg-white/20 transition group"
             title="Facebook"
@@ -337,7 +332,7 @@
 
           <!-- LinkedIn -->
           <a
-          target="_blank"
+            target="_blank"
             href="https://ke.linkedin.com/in/flora-c-advocates-924463250"
             class="flex-1 flex flex-col items-center justify-center py-3 gap-1 hover:bg-white/20 transition group"
             title="LinkedIn"
@@ -359,7 +354,7 @@
 
           <!-- Instagram -->
           <a
-           target="_blank"
+            target="_blank"
             href="https://www.instagram.com/floracadvocates/"
             class="flex-1 flex flex-col items-center justify-center py-3 gap-1 hover:bg-white/20 transition group"
             title="Instagram"
@@ -379,8 +374,6 @@
               >Instagram</span
             >
           </a>
-
-       
         </div>
       </div>
     </div>
@@ -388,6 +381,10 @@
 </template>
 
 <script setup>
+let token = ref("");
+const turnstile = ref(null);
+const isTurnstileVerified = computed(() => Boolean(token.value));
+
 const save = ref(false);
 let props = defineProps({
   message: {
@@ -407,9 +404,6 @@ const form = reactive({
 
 const errors = reactive({});
 
-/* -----------------------
-   Validation
------------------------ */
 function validate() {
   errors.firstName = form.firstName ? "" : "First name is required";
   errors.lastName = form.lastName ? "" : "Last name is required";
@@ -417,6 +411,7 @@ function validate() {
     form.email && form.email.includes("@") ? "" : "Valid email is required";
   errors.phone = form.phone ? "" : "Phone number is required";
   errors.message = form.message ? "" : "Message is required";
+  errors.token = token.value ? "" : "Please complete the verification";
 
   return !Object.values(errors).some((e) => e);
 }
@@ -432,10 +427,11 @@ async function handleSubmit() {
     email: form.email,
     phone: form.phone,
     message: form.message,
+    token: token.value,
   };
   let toast = useToast();
   try {
-    const resp = await useFetch("", {
+    await $fetch("", {
       method: "POST",
       body: payload,
     });
@@ -444,6 +440,8 @@ async function handleSubmit() {
       title: "Enquriy Added",
       description: "Enquiry Received Successfully",
     });
+    token.value = "";
+    turnstile.value?.reset();
   } catch (err) {
     console.error(err);
     toast.add({

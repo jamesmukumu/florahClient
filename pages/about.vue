@@ -83,7 +83,7 @@
 
             <img
               src="https://www.floracadvocates.co.ke/wp-content/uploads/2021/03/bg-02-1.jpg"
-              alt=""
+              alt="court-sessions-flora-advocates"
               class="relative z-10 w-full max-w-3xl object-contain"
             />
           </div>
@@ -181,13 +181,13 @@
             </span>
 
             <h2
-              class="mt-6 font-serif text-[62px] leading-[0.92] text-[#072b63]"
+              class="mt-6 font-serif text-[62px] leading-[0.92] text-black"
             >
               A focused
               <br />
               team. Deep
               <br />
-              experience.
+              experience
             </h2>
 
             <div class="mt-8 w-20 h-[2px] bg-[#bf8c3c]"></div>
@@ -198,7 +198,7 @@
             </p>
 
             <NuxtLink
-              to="/contact"
+              to="/book/appointment"
               class="group mt-12 inline-flex items-center border border-[#bf8c3c] px-8 py-4 uppercase tracking-[0.2em] text-[#bf8c3c] hover:bg-[#bf8c3c] hover:text-white transition"
             >
               CONSULT OUR TEAM
@@ -243,8 +243,8 @@
                   ></p>
 
                   <NuxtLink
-                    :to="'/team/' + advocate.slug"
-                    class="mt-auto pt-4 inline-flex items-center font-semibold text-[#072b63] hover:text-[#bf8c3c]"
+                    :to="'/partner/' + advocate.slug"
+                    class="mt-auto pt-4 inline-flex items-center font-semibold text-[#072b63] hover:text-pr"
                   >
                     View Profile
 
@@ -258,12 +258,13 @@
       </div>
     </section>
 
-    <button
+    <NuxtLink
+    to="/book/appointment"
       type="button"
       class="fixed right-0 top-1/2 z-50 -translate-y-1/2 translate-x-[36%] -rotate-90 border border-slate-900 bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-slate-900 transition hover:bg-slate-900 hover:text-white"
     >
       Schedule Consultation
-    </button>
+    </NuxtLink>
   </div>
 </template>
 
