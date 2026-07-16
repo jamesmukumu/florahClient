@@ -82,7 +82,7 @@
             ></div>
 
             <img
-              src="https://www.floracadvocates.co.ke/wp-content/uploads/2021/03/bg-02-1.jpg"
+              src="/images\bg-02-1.jpg"
               alt="court-sessions-flora-advocates"
               class="relative z-10 w-full max-w-3xl object-contain"
             />

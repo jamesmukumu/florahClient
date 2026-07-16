@@ -431,7 +431,7 @@ async function handleSubmit() {
   };
   let toast = useToast();
   try {
-   let response =  await $fetch("http://localhost:8000/api/add/new/enquiry", {
+   let response =  await $fetch("https://api.floracadvocates.co.ke/api/add/new/enquiry", {
       method: "POST",
       body: payload,
     });
