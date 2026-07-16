@@ -5,7 +5,7 @@
         class="group relative h-[62vh] min-h-[480px] w-full overflow-hidden lg:h-[68vh]"
       >
         <img
-          src="/images/hero-image-1.jpg"
+          src="/images/home-carousel/court-room-1.jpg"
           alt="Legal team in a modern office setting"
           class="h-full w-full object-cover transition-transform duration-[6000ms] ease-out group-hover:scale-105"
         />

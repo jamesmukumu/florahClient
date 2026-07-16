@@ -79,6 +79,7 @@
           </div>
 
           <button
+          @click="bookAppointment"
             class="mt-10 cursor-pointer border border-[#16386c] px-12 py-4 text-sm uppercase tracking-[0.3em] transition hover:bg-[#16386c] hover:text-white"
           >
             Book Appointment
@@ -93,8 +94,8 @@
                 class="border-b-2 px-4 py-3 text-sm font-semibold uppercase tracking-[0.15em] transition-colors md:text-base"
                 :class="
                   activeTab === tab.key
-                    ? 'border-[#16386c] text-[#16386c]'
-                    : 'border-transparent text-slate-500 hover:text-[#16386c]'
+                    ? 'border-[#16386c] text-[#16386c] cursor-pointer'
+                    : 'border-transparent text-slate-500 hover:text-[#16386c] cursor-pointer'
                 "
                 @click="activeTab = tab.key"
               >
@@ -104,7 +105,7 @@
           </div>
 
           <div class="mt-10 border-t border-slate-100 pt-8 md:pt-10">
-            <h3 class="mb-5 text-3xl font-serif text-[#16386c]">
+            <h3 class="mb-5 text-3xl font-serif text-black">
               {{ activeTabLabel }}
             </h3>
             <div
@@ -173,7 +174,7 @@ const activeTabContent = computed(() => {
     patnerInfo.value.workBackground || patnerInfo.value.overview || "";
   const educationContent = patnerInfo.value.educationBackground || "";
   const experienceContent =
-    patnerInfo.value.experience ||
+    patnerInfo.value.overview ||
     patnerInfo.value.workExperience ||
     patnerInfo.value.workBackground ||
     "";
@@ -188,7 +189,7 @@ const activeTabContent = computed(() => {
 
   return workContent || "No work details available.";
 });
-
+let bookAppointment = ()=>navigateTo("/book/appointment")
 const imageRevealRef = ref(null);
 const hasImageEntered = ref(false);
 

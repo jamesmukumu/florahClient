@@ -14,8 +14,8 @@
             </div>
             <div class="hidden md:flex items-center space-x-2">
               <UIcon name="ic:round-mail" />
-              <a href="mailto:litigation@floraadvocates.co.ke"
-                >litigation@floraadvocates.co.ke</a
+              <a href="mailto:litigation@floracadvocates.co.ke"
+                >litigation@floracadvocates.co.ke</a
               >
             </div>
           </div>
@@ -24,19 +24,23 @@
             <a
               href="https://m.facebook.com/pages/Flora-C-Company-Advocates/103302635872156/?locale=hi_IN"
               class="text-xl cursor-pointer"
+              target="_blank"
             >
               <UIcon name="mdi:facebook" />
             </a>
             <a
-              href="https://ke.linkedin.com/in/flora-c-advocates-924463250"
+        
+              href="https://www.instagram.com/floracadvocates/"
               class="text-xl cursor-pointer"
+              target="_blank"
             >
               <UIcon name="mdi:instagram" />
             </a>
 
             <a
-              href="https://www.instagram.com/floracadvocates/"
+              href="https://ke.linkedin.com/in/flora-c-advocates-924463250"
               class="text-xl cursor-pointer"
+              target="_blank"
             >
               <UIcon name="mdi:linkedin" />
             </a>

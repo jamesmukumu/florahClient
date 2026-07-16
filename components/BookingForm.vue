@@ -85,10 +85,11 @@
         <div v-if="isTurnstileVerified" class="pt-2">
           <button
             type="submit"
+            
             :disabled="save || !isTurnstileVerified"
             class="w-full md:w-auto bg-pr hover:bg-pr cursor-pointer text-white text-sm font-medium px-8 py-2.5 rounded-md transition disabled:opacity-50"
           >
-            {{ save ? "Sending..." : "Submit" }}
+            {{ save ? "Submiting..." : "Submit" }}
           </button>
         </div>
         <p v-else class="text-s text-red-500">
@@ -140,7 +141,7 @@
           </svg>
           <div>
             <p class="opacity-70 text-xs">Telephone</p>
-            <p>+254 714 416 325</p>
+            <a href="tel:+254714416325" target="_blank">+254 714 416 325</a>
           </div>
         </div>
         <div class="flex items-center gap-3 text-sm">
@@ -159,7 +160,7 @@
           </svg>
           <div>
             <p class="opacity-70 text-xs">Phone</p>
-            <p>+254 714 416 325</p>
+            <a href="tel:+254714416325" target="_blank">+254 714 416 325</a>
           </div>
         </div>
       </div>
@@ -200,7 +201,7 @@
           </svg>
           <div class="break-all">
             <p class="opacity-70 text-xs">General</p>
-            <p>litigation@floraadvocates.co.ke</p>
+            <a href="mailto:litigation@floracadvocates.co.ke">litigation@floracadvocates.co.ke</a>
           </div>
         </div>
       </div>
@@ -252,10 +253,10 @@
           </svg>
           <div>
             <p class="opacity-70 text-xs">Office</p>
-            <p class="leading-snug">
+            <a href="https://www.google.com/maps/@-1.2725371,36.8035091,3a,75y,318.34h,90.74t/data=!3m7!1e1!3m5!1ssDUkjOTXaPQ7SlnlpdCEvw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-0.7399999999999949%26panoid%3DsDUkjOTXaPQ7SlnlpdCEvw%26yaw%3D318.34!7i16384!8i8192?authuser=0&entry=ttu&g_ep=EgoyMDI2MDcxNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="leading-snug">
               General Conference Building,<br />3rd Riverside Drive, 2nd Floor,
               Kenya.
-            </p>
+            </a>
           </div>
         </div>
 
@@ -447,6 +448,7 @@ if(response.success){
       title: "Failed",
       description: response.message ,
     });
+    token.value = ''
 }
    
   } catch (err) {

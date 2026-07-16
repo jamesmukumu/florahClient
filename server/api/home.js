@@ -12,7 +12,7 @@ let {rows} = await pool.query(
 
 let {rows:blogs} = await pool.query(
 `
-SELECT title, slug,created_at FROM articles WHERE published = true
+SELECT title, slug,created_at FROM articles WHERE published = true LIMIT 4
 
 `
 )

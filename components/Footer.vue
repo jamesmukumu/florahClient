@@ -170,7 +170,7 @@
 
           <div class="break-all">
             <p class="opacity-70 text-m">General</p>
-            <a target="_blank" href="mailto:litigation@floraadvocates.co.ke">litigation@floraadvocates.co.ke</a>
+            <a target="_blank" href="mailto:litigation@floracadvocates.co.ke">litigation@floracadvocates.co.ke</a>
           </div>
         </div>
                   </a>
@@ -183,10 +183,10 @@
          </div>
       </div>
 
-      <p class="text-slate-600 text-sm mt-8">
+      <a href="/" class="text-slate-600 text-sm mt-8">
          © Flora C & Company Advocates {{ new Date().getFullYear() }}. 
          
-      </p>
+      </a>
  
    </div>
 </footer>
