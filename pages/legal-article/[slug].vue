@@ -40,7 +40,7 @@
 
           <div class="w-full">
             <img
-              :src="`https://florahadvocates-production-o7ug2i.laravel.cloud/storage/${article.articleImage}`"
+              :src="`https://api.floracadvocates.co.ke/${article.articleImage}`"
               :alt="article.slug"
               class="w-full max-h-[400px] object-cover rounded-sm"
             />

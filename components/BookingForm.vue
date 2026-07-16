@@ -425,23 +425,30 @@ async function handleSubmit() {
     firstName: form.firstName,
     lastName: form.lastName,
     email: form.email,
-    phone: form.phone,
+    phoneNumber: form.phone,
     message: form.message,
-    token: token.value,
+    "cf-turnstile-response": token.value,
   };
   let toast = useToast();
   try {
-    await $fetch("", {
+   let response =  await $fetch("http://localhost:8000/api/add/new/enquiry", {
       method: "POST",
       body: payload,
     });
-
-    toast.add({
-      title: "Enquriy Added",
+if(response.success){
+ toast.add({
+      title: "Enquiry Added",
       description: "Enquiry Received Successfully",
     });
     token.value = "";
     turnstile.value?.reset();
+}else{
+   toast.add({
+      title: "Failed",
+      description: response.message ,
+    });
+}
+   
   } catch (err) {
     console.error(err);
     toast.add({

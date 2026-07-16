@@ -180,9 +180,7 @@
               OUR TEAM
             </span>
 
-            <h2
-              class="mt-6 font-serif text-[62px] leading-[0.92] text-black"
-            >
+            <h2 class="mt-6 font-serif text-[62px] leading-[0.92] text-black">
               A focused
               <br />
               team. Deep
@@ -220,7 +218,7 @@
               >
                 <div class="overflow-hidden bg-[#ececec]">
                   <img
-                    :src="`https://florahadvocates-production-o7ug2i.laravel.cloud/storage/${advocate.patnersImage}`"
+                    :src="`https://api.floracadvocates.co.ke/${advocate.patnersImage}`"
                     :alt="advocate.name"
                     class="w-full h-[350px] object-cover transition duration-700 group-hover:scale-105"
                   />
@@ -259,7 +257,7 @@
     </section>
 
     <NuxtLink
-    to="/book/appointment"
+      to="/book/appointment"
       type="button"
       class="fixed right-0 top-1/2 z-50 -translate-y-1/2 translate-x-[36%] -rotate-90 border border-slate-900 bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-slate-900 transition hover:bg-slate-900 hover:text-white"
     >

@@ -5,7 +5,7 @@
         class="group relative h-[62vh] min-h-[480px] w-full overflow-hidden lg:h-[68vh]"
       >
         <img
-          src="https://www.floracadvocates.co.ke/wp-content/uploads/2022/09/library-gcc26b4ac4_1920.jpg"
+          src="/images/downloads-home.jpeg"
           alt="Legal team in a modern office setting"
           class="h-full w-full object-cover transition-transform duration-[6000ms] ease-out group-hover:scale-105"
         />

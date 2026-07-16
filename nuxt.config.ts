@@ -13,17 +13,15 @@ export default defineNuxtConfig({
     "@nuxtjs/turnstile",
   ],
 
-
-  
-colorMode:{
-preference: 'light',
-fallback: 'light',
-classSuffix: ''
-},
-site:{
-url:"http://localhost:3000",
-name:"Flora C Advocates",
-},
+  colorMode: {
+    preference: "light",
+    fallback: "light",
+    classSuffix: "",
+  },
+  site: {
+    url: "http://localhost:3000",
+    name: "Flora C Advocates",
+  },
   css: ["~/assets/css/main.css"],
 
   app: {
@@ -45,25 +43,23 @@ name:"Flora C Advocates",
       ],
     },
   },
-turnstile:{
-siteKey:"0x4AAAAAAD1rdQ7ADy1oUWox"
-},
+  turnstile: {
+    siteKey: "0x4AAAAAAD1rdQ7ADy1oUWox",
+  },
   runtimeConfig: {
     public: {
-      appUrl: "https://florahadvocates-production-o7ug2i.laravel.cloud/storage",
+      appUrl: "https://api.floracadvocates.co.ke",
     },
-    turnstile:{
-     secretKey:process.env.TURNSTILE_SECRET_KEY
+    turnstile: {
+      secretKey: process.env.TURNSTILE_SECRET_KEY,
     },
-    
-    db:{
-    host:process.env.DB_HOST,
-    port:process.env.DB_PORT,
-    user:process.env.DB_USER,
-    password:process.env.DB_PASSWORD,
-    db_name:process.env.DB_NAME
-    }
 
-  
+    db: {
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      db_name: process.env.DB_NAME,
+    },
   },
 });

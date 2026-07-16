@@ -1,5 +1,6 @@
 <template>
 <div>
+<UApp :toaster="toaster"/>
 <Header/>
 <slot/>
 
@@ -8,3 +9,8 @@
 
 
 </template>
+
+
+<script setup>
+let toaster = {position:"top-right"}
+</script>

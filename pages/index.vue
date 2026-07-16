@@ -129,7 +129,7 @@
 
           <!-- Fade -->
           <div
-            class="absolute left-0 top-0 z-10 h-full w-10 bg-gradient-to-r from-white via-[#f8f8f7]/85 to-transparent"
+            class="absolute left-0 top-0 z-10 h-full w-10 "
           />
 
           <img
