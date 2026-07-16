@@ -10,7 +10,7 @@ import BookingForm from '~/components/BookingForm.vue';
         class="group relative h-[62vh] min-h-[480px] w-full overflow-hidden lg:h-[68vh]"
       >
         <img
-          src="https://githogoriharrison.co.ke/uploads/gha-appointment-hero.png"
+          src="/images/florac-appointment-hero.png"
           alt="Legal team in a modern office setting"
           class="h-full w-full object-cover transition-transform duration-[6000ms] ease-out group-hover:scale-105"
         />

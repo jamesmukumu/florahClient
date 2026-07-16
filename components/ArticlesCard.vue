@@ -11,7 +11,7 @@
         <NuxtLink :to="`/legal-article/${article.slug}`">
           <div class="aspect-[4/3] overflow-hidden">
             <img
-              :src="`https://api.floracadvocates.co.ke/${article.articleImage}`"
+              :src="`https://api.floracadvocates.co.ke/storage/${article.articleImage}`"
               :alt="''"
               class="w-full h-full object-cover hover:scale-105 transition duration-700"
             />

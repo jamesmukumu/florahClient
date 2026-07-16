@@ -48,7 +48,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      appUrl: "https://api.floracadvocates.co.ke",
+      appUrl: "https://api.floracadvocates.co.ke/storage",
     },
     turnstile: {
       secretKey: process.env.TURNSTILE_SECRET_KEY,
