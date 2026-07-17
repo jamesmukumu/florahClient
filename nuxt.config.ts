@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     "@vercel/speed-insights",
     "@vercel/analytics",
     "@nuxtjs/turnstile",
+    "nuxt-schema-org",
   ],
 
   colorMode: {
@@ -45,6 +46,13 @@ export default defineNuxtConfig({
   },
   turnstile: {
     siteKey: "0x4AAAAAAD1rdQ7ADy1oUWox",
+  },
+
+  sitemap:{
+   autoLastmod:true,
+   sources:[
+    '/api/sitemap'
+   ]
   },
   runtimeConfig: {
     public: {

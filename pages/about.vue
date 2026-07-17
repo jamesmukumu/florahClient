@@ -269,4 +269,74 @@
 <script setup>
 let { data, pending, error } = await useFetch("/api/patners");
 const partners = computed(() => data.value ?? []);
+
+const requestUrl = useRequestURL();
+const pageUrl = `${requestUrl.origin}/about`;
+const firmName = "Flora C & Company Advocates";
+const seoDescription =
+  "Learn about Flora C & Company Advocates, a Nairobi law firm delivering partner-led legal counsel in corporate law, litigation, family law, conveyancing, and succession matters.";
+
+useSeoMeta({
+  title: "About Us | Flora C & Company Advocates",
+  description: seoDescription,
+  ogTitle: "About Us | Flora C & Company Advocates",
+  ogDescription: seoDescription,
+  ogType: "website",
+  ogUrl: pageUrl,
+  twitterCard: "summary_large_image",
+  twitterTitle: "About Us | Flora C & Company Advocates",
+  twitterDescription: seoDescription,
+});
+
+useSchemaOrg([
+  {
+    "@type": "AboutPage",
+    "@id": `${pageUrl}#about-page`,
+    name: "About Flora C & Company Advocates",
+    url: pageUrl,
+    description: seoDescription,
+  },
+  {
+    "@type": "LegalService",
+    "@id": `${pageUrl}#legal-service`,
+    name: firmName,
+    url: requestUrl.origin,
+    description: seoDescription,
+    areaServed: {
+      "@type": "Country",
+      name: "Kenya",
+    },
+  },
+  {
+    "@type": "ItemList",
+    name: "Our Team",
+    itemListElement: partners.value.map((advocate, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Person",
+        name: advocate.name,
+        url: `${requestUrl.origin}/partner/${advocate.slug}`,
+        jobTitle: advocate.title,
+      },
+    })),
+  },
+  {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: requestUrl.origin,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "About",
+        item: pageUrl,
+      },
+    ],
+  },
+]);
 </script>

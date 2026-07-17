@@ -1,10 +1,67 @@
-<script setup >
+<script setup>
+const requestUrl = useRequestURL();
+const pageUrl = `${requestUrl.origin}/book/appointment`;
+const seoDescription =
+  "Book a legal consultation with Flora C & Company Advocates in Nairobi, Kenya for practical, strategic legal support across corporate, litigation, family, conveyancing, and succession matters.";
 
+useSeoMeta({
+  title: "Book Appointment | Flora C & Company Advocates",
+  description: seoDescription,
+  ogTitle: "Book Appointment | Flora C & Company Advocates",
+  ogDescription: seoDescription,
+  ogType: "website",
+  ogUrl: pageUrl,
+  twitterCard: "summary_large_image",
+  twitterTitle: "Book Appointment | Flora C & Company Advocates",
+  twitterDescription: seoDescription,
+});
 
+useSchemaOrg([
+  {
+    "@type": "ContactPage",
+    "@id": `${pageUrl}#contact-page`,
+    name: "Schedule Appointment",
+    url: pageUrl,
+    description: seoDescription,
+  },
+  {
+    "@type": "Service",
+    "@id": `${pageUrl}#consultation-service`,
+    name: "Legal Consultation Booking",
+    description: seoDescription,
+    serviceType: "Legal Consultation",
+    provider: {
+      "@type": "LegalService",
+      name: "Flora C & Company Advocates",
+      url: requestUrl.origin,
+      areaServed: {
+        "@type": "Country",
+        name: "Kenya",
+      },
+    },
+  },
+  {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: requestUrl.origin,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Book Appointment",
+        item: pageUrl,
+      },
+    ],
+  },
+]);
 </script>
 
 <template>
-<div>
+  <div>
     <section id="hero-carousel" class="relative w-full overflow-hidden">
       <div
         class="group relative h-[62vh] min-h-[480px] w-full overflow-hidden lg:h-[68vh]"
@@ -41,12 +98,8 @@
       </div>
     </section>
 
-
     <section>
-    <BookingForm/>
+      <BookingForm />
     </section>
-
-</div>
-
-
+  </div>
 </template>

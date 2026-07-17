@@ -1,14 +1,28 @@
-import {pool} from "../utils/pool"
+import { pool } from "../utils/pool";
 
-export default eventHandler(async(event)=>{
-try{
-let {rows:categories} = await pool.query(
-`
+export default eventHandler(async (event) => {
+  try {
+    let query = getQuery(event);
+    const parsedCategoryId = Number(query.articlesCategories_id);
+    const hasCategoryFilter =
+      Number.isInteger(parsedCategoryId) && parsedCategoryId > 0;
+
+    let { rows: categories } = await pool.query(
+      `
 SELECT title,id FROM "articlesCategories"
 
-`
-) 
-const { rows: articles } = await pool.query(`
+`,
+    );
+    const whereClauses = ["a.published = TRUE"];
+    const params = [];
+
+    if (hasCategoryFilter) {
+      params.push(parsedCategoryId);
+      whereClauses.push(`a."articlesCategories_id" = $${params.length}`);
+    }
+
+    const { rows: articles } = await pool.query(
+      `
   SELECT
     a.id,
     a.title,
@@ -21,17 +35,18 @@ const { rows: articles } = await pool.query(`
   FROM articles AS a
   INNER JOIN admins AS ad
     ON a.admins_id = ad.id
-  WHERE a.published = TRUE
+  WHERE ${whereClauses.join(" AND ")}
   ORDER BY a.created_at DESC LIMIT 5;
-`);
+`,
+      params,
+    );
 
-return {
-categories:categories,
-articles:articles
-}
-}catch(err){
-console.error(err)
-return err
-}
-
-})
+    return {
+      categories: categories,
+      articles: articles,
+    };
+  } catch (err) {
+    console.error(err);
+    return err;
+  }
+});

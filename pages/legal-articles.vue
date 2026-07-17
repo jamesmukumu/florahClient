@@ -31,12 +31,8 @@
       </div>
     </section>
 
-
-    
-    <section class="border-b border-black/5 bg-white py-8 sm:py-10">
+    <section class="bg-white py-8 sm:py-10">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
-
-
         <div
           class="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-3 text-center"
         >
@@ -57,11 +53,11 @@
             :key="categoryKey(category)"
             :to="{
               path: '/legal-articles',
-              query: { category: categorySlug(category) },
+              query: { articlesCategories_id: category.id },
             }"
             class="inline-flex items-center rounded-full border px-5 py-2.5 text-sm font-medium transition"
             :class="
-              activeCategory === categorySlug(category)
+              activeCategoryId === Number(category.id)
                 ? 'border-[#C79A52] bg-[#C79A52] text-white shadow-sm'
                 : 'border-black/10 bg-white text-slate-700 hover:border-[#C79A52] hover:text-[#C79A52]'
             "
@@ -72,35 +68,99 @@
       </div>
     </section>
 
-    <section class="bg-[#F9FAFB]">
-      <ArticlesCard :articles="articles"/>
+    <section class="bg-white">
+      <ArticlesCard :articles="articles" />
     </section>
   </div>
 </template>
 
 <script setup>
 const route = useRoute();
-const { data } = await useFetch("/api/articles");
-const categories = computed(() => data.value?.categories ?? []);
-const articles = computed(()=>data.value.articles ?? [])
-const activeCategory = computed(() => {
-  const value = route.query.category;
-  return Array.isArray(value) ? value[0] : value || "";
+
+const activeCategoryId = computed(() => {
+  const value = route.query.articlesCategories_id;
+  const parsedValue = Array.isArray(value) ? value[0] : value;
+  const parsedNumber = Number(parsedValue);
+  return Number.isInteger(parsedNumber) && parsedNumber > 0
+    ? parsedNumber
+    : null;
 });
 
-const isAllActive = computed(() => !activeCategory.value);
+const fetchQuery = computed(() => {
+  if (!activeCategoryId.value) return {};
+  return { articlesCategories_id: activeCategoryId.value };
+});
 
-function categorySlug(category) {
-  return (
-    category?.slug ?? category?.name ?? category?.title ?? String(category)
-  );
-}
+const { data } = await useFetch("/api/articles", {
+  query: fetchQuery,
+});
+
+const categories = computed(() => data.value?.categories ?? []);
+const articles = computed(() => data.value?.articles ?? []);
+const requestUrl = useRequestURL();
+const pageUrl = `${requestUrl.origin}/legal-articles`;
+const seoDescription =
+  "Explore legal insights, updates, and practical articles from Flora C & Company Advocates on litigation, corporate law, family law, conveyancing, and related legal topics in Kenya.";
+
+useSeoMeta({
+  title: "Legal Articles | Flora C & Company Advocates",
+  description: seoDescription,
+  ogTitle: "Legal Articles | Flora C & Company Advocates",
+  ogDescription: seoDescription,
+  ogType: "website",
+  ogUrl: pageUrl,
+  twitterCard: "summary_large_image",
+  twitterTitle: "Legal Articles | Flora C & Company Advocates",
+  twitterDescription: seoDescription,
+});
+
+useSchemaOrg([
+  {
+    "@type": "CollectionPage",
+    "@id": `${pageUrl}#collection-page`,
+    name: "Legal Insights",
+    url: pageUrl,
+    description: seoDescription,
+  },
+  {
+    "@type": "ItemList",
+    name: "Legal Articles",
+    itemListElement: articles.value.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Article",
+        headline: item.title,
+        url: `${requestUrl.origin}/legal-article/${item.slug}`,
+      },
+    })),
+  },
+  {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: requestUrl.origin,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Legal Articles",
+        item: pageUrl,
+      },
+    ],
+  },
+]);
+
+const isAllActive = computed(() => !activeCategoryId.value);
 
 function categoryLabel(category) {
   return category?.name ?? category?.title ?? String(category);
 }
 
 function categoryKey(category) {
-  return category?.id ?? categorySlug(category);
+  return category?.id ?? String(category);
 }
 </script>

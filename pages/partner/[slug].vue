@@ -79,7 +79,7 @@
           </div>
 
           <button
-          @click="bookAppointment"
+            @click="bookAppointment"
             class="mt-10 cursor-pointer border border-[#16386c] px-12 py-4 text-sm uppercase tracking-[0.3em] transition hover:bg-[#16386c] hover:text-white"
           >
             Book Appointment
@@ -154,6 +154,89 @@ const { data } = await useFetch("/api/partner", {
 
 const patnerInfo = computed(() => data.value?.[0] || null);
 
+const requestUrl = useRequestURL();
+const pageUrl = `${requestUrl.origin}/partner/${slug}`;
+
+function stripHtml(value = "") {
+  return String(value)
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const partnerDescription = computed(() => {
+  const overview = stripHtml(patnerInfo.value?.overview || "");
+  return (
+    overview ||
+    `${patnerInfo.value?.name || "Team Member"} profile at Flora C & Company Advocates.`
+  );
+});
+
+const seoTitle = computed(
+  () =>
+    `${patnerInfo.value?.name || "Team Member"} | Flora C & Company Advocates`,
+);
+
+useSeoMeta({
+  title: () => seoTitle.value,
+  description: () => partnerDescription.value,
+  ogTitle: () => seoTitle.value,
+  ogDescription: () => partnerDescription.value,
+  ogType: "profile",
+  ogUrl: pageUrl,
+  twitterCard: "summary_large_image",
+  twitterTitle: () => seoTitle.value,
+  twitterDescription: () => partnerDescription.value,
+});
+
+useSchemaOrg([
+  {
+    "@type": "ProfilePage",
+    "@id": `${pageUrl}#profile-page`,
+    name: seoTitle.value,
+    url: pageUrl,
+    description: partnerDescription.value,
+  },
+  {
+    "@type": "Person",
+    "@id": `${pageUrl}#person`,
+    name: patnerInfo.value?.name || "Team Member",
+    description: partnerDescription.value,
+    url: pageUrl,
+    jobTitle: patnerInfo.value?.title,
+    email: patnerInfo.value?.email,
+    telephone: patnerInfo.value?.phoneNumber,
+    worksFor: {
+      "@type": "LegalService",
+      name: "Flora C & Company Advocates",
+      url: requestUrl.origin,
+    },
+  },
+  {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: requestUrl.origin,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Our Team",
+        item: `${requestUrl.origin}/patners`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: patnerInfo.value?.name || "Team Member",
+        item: pageUrl,
+      },
+    ],
+  },
+]);
+
 const tabs = [
   { key: "work", label: "Work" },
   { key: "education", label: "Education" },
@@ -189,7 +272,7 @@ const activeTabContent = computed(() => {
 
   return workContent || "No work details available.";
 });
-let bookAppointment = ()=>navigateTo("/book/appointment")
+let bookAppointment = () => navigateTo("/book/appointment");
 const imageRevealRef = ref(null);
 const hasImageEntered = ref(false);
 

@@ -70,4 +70,97 @@ let { data, pending, error } = await useFetch("/api/article", {
 });
 
 let article = computed(() => data.value ?? {});
+
+const requestUrl = useRequestURL();
+const pageUrl = `${requestUrl.origin}/legal-article/${route.params.slug}`;
+
+function stripHtml(value = "") {
+  return String(value)
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const articleDescription = computed(() => {
+  const overview = stripHtml(article.value?.overview || "");
+  if (overview) return overview;
+
+  const articleBodyExcerpt = stripHtml(article.value?.articleBody || "").slice(
+    0,
+    220,
+  );
+  return (
+    articleBodyExcerpt ||
+    "Legal insight article from Flora C & Company Advocates."
+  );
+});
+
+const seoTitle = computed(
+  () =>
+    `${article.value?.title || "Legal Article"} | Flora C & Company Advocates`,
+);
+
+useSeoMeta({
+  title: () => seoTitle.value,
+  description: () => articleDescription.value,
+  ogTitle: () => seoTitle.value,
+  ogDescription: () => articleDescription.value,
+  ogType: "article",
+  ogUrl: pageUrl,
+  twitterCard: "summary_large_image",
+  twitterTitle: () => seoTitle.value,
+  twitterDescription: () => articleDescription.value,
+});
+
+useSchemaOrg([
+  {
+    "@type": "Article",
+    "@id": `${pageUrl}#article`,
+    headline: article.value?.title || "Legal Article",
+    description: articleDescription.value,
+    url: pageUrl,
+    datePublished: article.value?.created_at,
+    dateModified: article.value?.updated_at || article.value?.created_at,
+    author: {
+      "@type": "Organization",
+      name: "Flora C & Company Advocates",
+      url: requestUrl.origin,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Flora C & Company Advocates",
+      url: requestUrl.origin,
+    },
+  },
+  {
+    "@type": "WebPage",
+    "@id": `${pageUrl}#webpage`,
+    name: article.value?.title || "Legal Article",
+    url: pageUrl,
+    description: articleDescription.value,
+  },
+  {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: requestUrl.origin,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Legal Articles",
+        item: `${requestUrl.origin}/legal-articles`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: article.value?.title || "Legal Article",
+        item: pageUrl,
+      },
+    ],
+  },
+]);
 </script>

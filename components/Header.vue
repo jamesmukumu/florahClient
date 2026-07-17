@@ -108,7 +108,7 @@
 
         <!-- Hamburger -->
         <button @click="toggleMenu" :class="mobileMenuButtonClass">
-          <UIcon name="ic:sharp-menu" />
+          <UIcon name="ic:sharp-menu" aria-label="harmbuger"/>
         </button>
       </div>
     </header>
@@ -130,7 +130,7 @@
       <div class="flex justify-between items-center p-6 border-b">
         <h2 class="text-lg font-semibold">Menu</h2>
         <button @click="toggleMenu" class="text-2xl">
-          <UIcon name="material-symbols:close" />
+          <UIcon name="material-symbols:close"  aria-label="close-x-mark"/>
         </button>
       </div>
 

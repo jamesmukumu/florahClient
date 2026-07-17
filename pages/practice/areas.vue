@@ -67,7 +67,7 @@
               </h2>
 
               <p
-                class="mt-6 max-w-2xl  leading-relaxed"
+                class="mt-6 max-w-2xl leading-relaxed"
                 v-html="practice.overview"
               ></p>
             </div>
@@ -100,4 +100,87 @@
 let { data, pending, error } = await useFetch("/api/home");
 
 let practiceAreas = computed(() => data.value.practices ?? []);
+
+const requestUrl = useRequestURL();
+const pageUrl = `${requestUrl.origin}/practice/areas`;
+const firmName = "Flora C & Company Advocates";
+const seoDescription =
+  "Flora C & Company Advocates is a leading law firm in Nairobi, Kenya, offering Commercial & Corporate Law, Litigation & Dispute Resolution, Family Law, Conveyancing & Real Estate, and Succession Law services with practical, strategic, client-focused legal solutions.";
+const serviceTypes = [
+  "Commercial & Corporate Law",
+  "Litigation & Dispute Resolution",
+  "Family Law",
+  "Conveyancing",
+  "Real Estate Law",
+  "Succession Law",
+];
+
+useSeoMeta({
+  title: "Practice Areas | Flora C & Company Advocates",
+  description: seoDescription,
+  ogTitle: "Practice Areas | Flora C & Company Advocates",
+  ogDescription: seoDescription,
+  ogType: "website",
+  ogUrl: pageUrl,
+  twitterCard: "summary_large_image",
+  twitterTitle: "Practice Areas | Flora C & Company Advocates",
+  twitterDescription: seoDescription,
+});
+
+useSchemaOrg([
+  defineWebPage({
+    name: "Practice Areas",
+    description: seoDescription,
+    url: pageUrl,
+  }),
+
+  {
+    "@type": "LegalService",
+    "@id": `${pageUrl}#legal-service`,
+    name: firmName,
+    description: seoDescription,
+    url: pageUrl,
+    areaServed: {
+      "@type": "Country",
+      name: "Kenya",
+    },
+    serviceType: serviceTypes,
+    provider: {
+      "@type": "Organization",
+      name: firmName,
+      url: requestUrl.origin,
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Legal Services",
+      itemListElement: practiceAreas.value.map((practice, index) => ({
+        "@type": "Offer",
+        position: index + 1,
+        itemOffered: {
+          "@type": "Service",
+          name: practice.title,
+          url: `${pageUrl}#${practice.slug}`,
+        },
+      })),
+    },
+  },
+
+  {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: requestUrl.origin,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Practice Areas",
+        item: pageUrl,
+      },
+    ],
+  },
+]);
 </script>

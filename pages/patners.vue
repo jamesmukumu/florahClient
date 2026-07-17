@@ -83,4 +83,62 @@ let config = useRuntimeConfig();
 let { data, pending, error } = await useFetch("/api/patners");
 
 patnersData.value = data.value;
+
+const requestUrl = useRequestURL();
+const pageUrl = `${requestUrl.origin}/patners`;
+const seoDescription =
+  "Meet the legal team at Flora C & Company Advocates in Nairobi, Kenya. Explore partner profiles, legal backgrounds, and areas of practice.";
+
+useSeoMeta({
+  title: "Our Team | Flora C & Company Advocates",
+  description: seoDescription,
+  ogTitle: "Our Team | Flora C & Company Advocates",
+  ogDescription: seoDescription,
+  ogType: "website",
+  ogUrl: pageUrl,
+  twitterCard: "summary_large_image",
+  twitterTitle: "Our Team | Flora C & Company Advocates",
+  twitterDescription: seoDescription,
+});
+
+useSchemaOrg([
+  {
+    "@type": "CollectionPage",
+    "@id": `${pageUrl}#collection-page`,
+    name: "Our Team",
+    url: pageUrl,
+    description: seoDescription,
+  },
+  {
+    "@type": "ItemList",
+    name: "Team Members",
+    itemListElement: patnersData.value.map((lawyer, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Person",
+        name: lawyer.name,
+        jobTitle: lawyer.title,
+        url: `${requestUrl.origin}/partner/${lawyer.slug}`,
+      },
+    })),
+  },
+  {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: requestUrl.origin,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Our Team",
+        item: pageUrl,
+      },
+    ],
+  },
+]);
 </script>

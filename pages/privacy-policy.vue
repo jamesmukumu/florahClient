@@ -37,9 +37,7 @@
     <section class="bg-white py-4 lg:py-4">
       <div class="mx-auto max-w-5xl px-6 lg:px-8">
         <div class="space-y-8">
-          <article
-            class="p-8 sm:p-10"
-          >
+          <article class="p-8 sm:p-10">
             <h2 class="text-3xl font-bold text-black">
               1. Information We Collect
             </h2>
@@ -55,9 +53,7 @@
             </p>
           </article>
 
-          <article
-            class="p-8 sm:p-10"
-          >
+          <article class="p-8 sm:p-10">
             <h2 class="text-3xl font-bold text-slate-900">
               2. How We Use Your Information ?
             </h2>
@@ -77,9 +73,7 @@
             </ul>
           </article>
 
-          <article
-            class="p-8 sm:p-10"
-          >
+          <article class="p-8 sm:p-10">
             <h2 class="text-3xl font-bold text-slate-900">
               3. Data Sharing &amp; Disclosure
             </h2>
@@ -91,9 +85,7 @@
             </p>
           </article>
 
-          <article
-            class="p-8 sm:p-10"
-          >
+          <article class="p-8 sm:p-10">
             <h2 class="text-3xl font-bold text-slate-900">
               4. Data Security &amp; Retention
             </h2>
@@ -108,9 +100,7 @@
             </p>
           </article>
 
-          <article
-            class="p-8 sm:p-10"
-          >
+          <article class="p-8 sm:p-10">
             <h2 class="text-3xl font-bold text-slate-900">5. Your Rights</h2>
             <p class="mt-5 text-lg leading-9 text-slate-700">
               Subject to applicable law, you may request access to, correction
@@ -122,18 +112,14 @@
             </p>
           </article>
 
-          <article
-            class="p-8 sm:p-10"
-          >
+          <article class="p-8 sm:p-10">
             <h2 class="text-3xl font-bold text-slate-900">7. Contact Us</h2>
             <p class="mt-5 text-lg leading-9 text-slate-700">
               If you have any questions about this Privacy Policy or your
               personal data, please contact Flora C &amp; Company Advocates.
             </p>
 
-            <div
-              class="mt-8 rounded-xl border border-pr/40 bg-pr/10 p-6"
-            >
+            <div class="mt-8 rounded-xl border border-pr/40 bg-pr/10 p-6">
               <p class="text-lg font-semibold text-slate-900">
                 Flora C &amp; Company Advocates
               </p>
@@ -148,3 +134,59 @@
     </section>
   </div>
 </template>
+
+<script setup>
+const requestUrl = useRequestURL();
+const pageUrl = `${requestUrl.origin}/privacy-policy`;
+const seoDescription =
+  "Read the Privacy Policy of Flora C & Company Advocates to understand how personal information is collected, used, and protected.";
+
+useSeoMeta({
+  title: "Privacy Policy | Flora C & Company Advocates",
+  description: seoDescription,
+  ogTitle: "Privacy Policy | Flora C & Company Advocates",
+  ogDescription: seoDescription,
+  ogType: "website",
+  ogUrl: pageUrl,
+  twitterCard: "summary_large_image",
+  twitterTitle: "Privacy Policy | Flora C & Company Advocates",
+  twitterDescription: seoDescription,
+});
+
+useSchemaOrg([
+  {
+    "@type": "WebPage",
+    "@id": `${pageUrl}#webpage`,
+    name: "Privacy Policy",
+    url: pageUrl,
+    description: seoDescription,
+  },
+  {
+    "@type": "PrivacyPolicy",
+    name: "Privacy Policy",
+    url: pageUrl,
+    publisher: {
+      "@type": "LegalService",
+      name: "Flora C & Company Advocates",
+      url: requestUrl.origin,
+    },
+  },
+  {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: requestUrl.origin,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Privacy Policy",
+        item: pageUrl,
+      },
+    ],
+  },
+]);
+</script>
