@@ -4,7 +4,6 @@
       <UCarousel
         v-slot="{ item }"
         loop
-        dots
         :items="heroSlides"
         fade
         autoplay
