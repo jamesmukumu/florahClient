@@ -134,13 +134,16 @@
       </div>
     </section>
 
-    <section></section>
+
+
+
   </div>
 </template>
 
 <script setup>
+
 const heroSlides = [
-  {
+{
     image:
       "/images/home-carousel/wooden-judges-gavel-table-courtroom-enforcement-office_1150-19608.jpg",
     alt: "Law professionals in a formal office setting",
@@ -238,4 +241,6 @@ useSchemaOrg([
     })),
   },
 ]);
+
+
 </script>
