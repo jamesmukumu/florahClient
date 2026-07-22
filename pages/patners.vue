@@ -74,7 +74,7 @@
             <div>
               
                       <NuxtLink
-            :to="`/practice/areas/?area=${lawyer.slug}`"
+            :to="`/partner/${lawyer.slug}`"
             class="inline-flex items-center gap-2 rounded-full border border-pr/20 bg-pr/5 px-4 py-2 text-sm font-semibold text-pr tracking-wide m-5"
           >
             See More

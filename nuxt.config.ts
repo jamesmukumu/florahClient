@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     classSuffix: "",
   },
   site: {
-    url: "http://localhost:3000",
+    url: "https://www.floracadvocates.co.ke/",
     name: "Flora C Advocates",
   },
   css: ["~/assets/css/main.css"],

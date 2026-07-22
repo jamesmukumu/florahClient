@@ -140,7 +140,7 @@
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+
 
 const route = useRoute();
 
@@ -238,12 +238,13 @@ useSchemaOrg([
 ]);
 
 const tabs = [
-  { key: "work", label: "Work" },
-  { key: "education", label: "Education" },
   { key: "experience", label: "Experience" },
+  { key: "work", label: "Professional Membership" },
+  { key: "education", label: "Education" },
+  
 ];
 
-const activeTab = ref("work");
+const activeTab = ref("experience");
 
 const activeTabLabel = computed(() => {
   const current = tabs.find((tab) => tab.key === activeTab.value);
