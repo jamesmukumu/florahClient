@@ -255,7 +255,7 @@
             <p class="opacity-70 text-xs">Office</p>
             <a href="https://www.google.com/maps/@-1.2725371,36.8035091,3a,75y,318.34h,90.74t/data=!3m7!1e1!3m5!1ssDUkjOTXaPQ7SlnlpdCEvw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-0.7399999999999949%26panoid%3DsDUkjOTXaPQ7SlnlpdCEvw%26yaw%3D318.34!7i16384!8i8192?authuser=0&entry=ttu&g_ep=EgoyMDI2MDcxNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="leading-snug">
               General Conference Building,<br />3rd Riverside Drive, 2nd Floor,
-              Kenya.
+              Nairobi.
             </a>
           </div>
         </div>

@@ -41,6 +41,7 @@
         <div
           v-for="(practice, index) in practiceAreas"
           :key="practice.slug"
+          :id="practice.slug"
           class="relative pb-16 mb-16 last:mb-0 last:pb-0"
         >
           <div
@@ -51,7 +52,7 @@
                 <h2
                   class="font-serif text-[72px] leading-none font-bold text-[#C79A52]"
                 >
-                  0{{ index + 1 }}
+                  {{ index + 1 > 9 ? "0" : "" }}{{ index + 1 }}
                 </h2>
 
                 <div class="mt-5 h-[2px] w-14 bg-[#C79A52]"></div>
@@ -183,4 +184,52 @@ useSchemaOrg([
     ],
   },
 ]);
+
+const route = useRoute();
+
+async function scrollToSlug(slug) {
+  if (!slug) return;
+  await nextTick();
+  const el = document.getElementById(slug);
+  if (el) {
+    // Scroll the element into view and align it to the top of the viewport
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function extractSlugFromRoute(r) {
+  // 1) hash (#slug)
+  if (r.hash && r.hash.length > 1) return r.hash.replace("#", "");
+
+  // 2) query ?area=...
+  if (r.query && r.query.area)
+    return Array.isArray(r.query.area) ? r.query.area[0] : r.query.area;
+
+  // 3) path segment: /practice/areas/:slug
+  const parts = (r.path || "").split("/").filter(Boolean);
+  const areasIndex =
+    parts.indexOf("practice") >= 0 ? parts.indexOf("practice") : -1;
+  if (
+    areasIndex >= 0 &&
+    parts[areasIndex + 1] === "areas" &&
+    parts.length > areasIndex + 2
+  ) {
+    return parts[areasIndex + 2];
+  }
+
+  return null;
+}
+
+onMounted(() => {
+  const slug = extractSlugFromRoute(route);
+  if (slug) scrollToSlug(slug);
+});
+
+watch(
+  () => [route.path, route.hash, route.query && route.query.area],
+  () => {
+    const slug = extractSlugFromRoute(route);
+    if (slug) scrollToSlug(slug);
+  },
+);
 </script>

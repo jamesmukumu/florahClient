@@ -7,7 +7,7 @@
         >
           <div class="w-full md:w-2/5">
             <h2 class="text-black text-3xl font-bold leading-tight md:text-4xl">
-              Florah C Company Advocates
+              Flora C & Company Advocates
             </h2>
             <div class="bg-pr mx-auto mt-3 h-1 w-32 md:mx-0"></div>
           </div>

@@ -33,7 +33,7 @@ onMounted(() => {
     marginRight:20,
     btnPosition:"left",
     whatsAppNumber:"254714416325",
-    welcomeMessage:"Welcome, thankyou for reaching out to techwave",
+    welcomeMessage:"Welcome, thank you for reaching out to us. How can we help you?",
     zIndex:999999,
     btnColorScheme:"light"
   }

@@ -115,7 +115,7 @@
             <p class="opacity-70 text-m">Office</p>
             <a href="https://maps.app.goo.gl/qszVVSq9dyns9RTy8" target="_blank" class="leading-snug">
               General Conference Building,<br />3rd Riverside Drive, 2nd Floor,
-              Kenya.
+             Nairobi.
             </a>
           </div>
         </div>
