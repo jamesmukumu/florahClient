@@ -48,15 +48,13 @@ export default defineNuxtConfig({
     siteKey: "0x4AAAAAAD1rdQ7ADy1oUWox",
   },
 
-  sitemap:{
-   autoLastmod:true,
-   sources:[
-    '/api/sitemap'
-   ]
+  sitemap: {
+    autoLastmod: true,
+    sources: ["/api/sitemap"],
   },
   runtimeConfig: {
     public: {
-      appUrl: "https://api.floracadvocates.co.ke/storage",
+      appUrl: "https://api.floracadvocates.co.ke",
     },
     turnstile: {
       secretKey: process.env.TURNSTILE_SECRET_KEY,

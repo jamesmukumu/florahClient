@@ -122,7 +122,7 @@
           >
             <div class="bg-white p-3 sm:p-4 lg:p-6">
               <img
-                :src="`https://api.floracadvocates.co.ke/storage/${patnerInfo.patnersImage}`"
+                :src="`https://api.floracadvocates.co.ke/${patnerInfo.patnersImage}`"
                 :alt="patnerInfo.name"
                 class="relative z-10 max-h-[420px] w-full object-contain transition-all duration-1000 ease-out sm:max-h-[520px] md:max-h-[620px] lg:max-h-[860px]"
                 :class="
@@ -140,8 +140,6 @@
 </template>
 
 <script setup>
-
-
 const route = useRoute();
 
 const { slug } = route.params;
@@ -241,7 +239,6 @@ const tabs = [
   { key: "experience", label: "Experience" },
   { key: "work", label: "Professional Membership" },
   { key: "education", label: "Education" },
-  
 ];
 
 const activeTab = ref("experience");
