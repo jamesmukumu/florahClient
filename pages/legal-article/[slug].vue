@@ -40,7 +40,7 @@
 
           <div class="w-full">
             <img
-              :src="`https://api.floracadvocates.co.ke/${article.articleImage}`"
+              :src="`https://pub-40dbe868a46f4a7f914c7b730520d83b.r2.dev/${article.articleImage}`"
               :alt="article.slug"
               class="w-full max-h-[400px] object-cover rounded-sm"
             />

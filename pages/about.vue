@@ -218,7 +218,7 @@
               >
                 <div class="overflow-hidden bg-[#ececec]">
                   <img
-                    :src="`https://api.floracadvocates.co.ke/${advocate.patnersImage}`"
+                    :src="`https://pub-40dbe868a46f4a7f914c7b730520d83b.r2.dev/${advocate.patnersImage}`"
                     :alt="advocate.name"
                     class="w-full h-[350px] object-cover transition duration-700 group-hover:scale-105"
                   />
