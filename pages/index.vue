@@ -34,6 +34,10 @@
       <About />
     </section>
 
+    <p v-if="error" role="alert" class="px-8 py-4 text-center text-red-700">
+      Practice areas and latest articles are temporarily unavailable.
+    </p>
+
     <section>
       <Practices title="Our Practice" :practice-areas="practiceAreas" />
     </section>
@@ -164,8 +168,8 @@ const heroSlides = [
 ];
 let { data, pending, error } = await useFetch("/api/home");
 
-let practiceAreas = computed(() => data.value.practices ?? []);
-let articles = computed(() => data.value.articles ?? []);
+let practiceAreas = computed(() => data.value?.practices ?? []);
+let articles = computed(() => data.value?.articles ?? []);
 
 const requestUrl = useRequestURL();
 const pageUrl = requestUrl.origin;

@@ -57,15 +57,15 @@ export default defineNuxtConfig({
       appUrl: "https://pub-40dbe868a46f4a7f914c7b730520d83b.r2.dev",
     },
     turnstile: {
-      secretKey: process.env.TURNSTILE_SECRET_KEY,
+      secretKey: "",
     },
 
     db: {
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      db_name: process.env.DB_NAME,
+      host: "",
+      port: "",
+      user: "",
+      password: "",
+      db_name: "",
     },
   },
 });

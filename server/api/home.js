@@ -21,7 +21,7 @@ practices:rows,
 articles:blogs
 }
 }catch(err){
-console.error(err)
-return err
+console.error('Failed to load home page data:', err)
+throw createError({ statusCode: 503, statusMessage: 'Home page data is unavailable' })
 }
 })
