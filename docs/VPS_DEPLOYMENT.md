@@ -19,7 +19,7 @@ public key paired with the `VPS_SSH_PRIVATE_KEY` GitHub secret.
 ```bash
 sudo adduser --disabled-password --gecos '' deploy
 sudo usermod -aG docker deploy
-sudo install -d -o deploy -g deploy -m 750 /opt/flora-advocates
+sudo install -d -o deploy -g deploy -m 750 /opt/florahClient
 sudo install -d -o deploy -g deploy -m 700 /home/deploy/.ssh
 sudo tee /home/deploy/.ssh/authorized_keys >/dev/null <<'EOF'
 DEPLOY_PUBLIC_KEY
@@ -31,20 +31,23 @@ sudo chmod 600 /home/deploy/.ssh/authorized_keys
 Docker-group membership is privileged. Restrict the deploy key to GitHub
 Actions and do not reuse it for interactive administration.
 
-Create `/opt/flora-advocates/.env` using `.env.example` in this repository as
-the variable reference, use the actual production values, and protect it:
+Use the existing `/opt/florahClient/.env`, or create it using `.env.example` in
+this repository as the variable reference. Use the actual production values and
+protect the file:
 
 ```bash
-sudo -u deploy nano /opt/flora-advocates/.env
-sudo chmod 600 /opt/flora-advocates/.env
+sudo -u deploy nano /opt/florahClient/.env
+sudo chmod 600 /opt/florahClient/.env
 ```
 
 The initial deployment needs a working release to roll back to. Put its full
-40-character image SHA in `/opt/flora-advocates/.deploy.env`:
+40-character image SHA in `/opt/florahClient/.deploy.env`. If a previous
+deployment stored its state under `/opt/flora-advocates`, migrate the current
+image tag before deploying:
 
 ```bash
-sudo -u deploy sh -c 'printf "IMAGE_TAG=PUT_CURRENT_40_CHARACTER_SHA_HERE\\n" > /opt/flora-advocates/.deploy.env'
-sudo chmod 600 /opt/flora-advocates/.deploy.env
+sudo -u deploy sh -c 'printf "IMAGE_TAG=PUT_CURRENT_40_CHARACTER_SHA_HERE\\n" > /opt/florahClient/.deploy.env'
+sudo chmod 600 /opt/florahClient/.deploy.env
 ```
 
 Create a classic GitHub personal access token that has only `read:packages`.
@@ -112,7 +115,7 @@ the GitHub Actions job as failed.
 To inspect an incident on the VPS:
 
 ```bash
-cd /opt/flora-advocates
+cd /opt/florahClient
 docker compose --env-file .deploy.env -f compose.production.yaml ps
 docker compose --env-file .deploy.env -f compose.production.yaml logs --tail=200 app
 ```
