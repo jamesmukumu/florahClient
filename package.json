@@ -33,8 +33,11 @@
     "pg": "^8.22.0",
     "unhead": "2.1.15",
     "vite": "7.3.6",
-    "vue": "^3.5.39",
+    "vue": "^3.5.46",
     "vue-recaptcha": "^3.0.0-alpha.6",
     "vue-router": "^5.1.0"
+  },
+  "overrides": {
+    "sharp": "^0.35.5"
   }
 }

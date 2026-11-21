@@ -14,6 +14,8 @@ RUN npm run build
 # Run only the self-contained Nitro output as an unprivileged user.
 FROM node:26.13.1-bookworm-slim AS runtime
 WORKDIR /app
+# The Nitro server needs Node only; omit npm and its bundled dependencies.
+RUN rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx
 ARG VERSION=dev
 LABEL org.opencontainers.image.title="Flora C & Company Advocates" \
       org.opencontainers.image.version="${VERSION}"
