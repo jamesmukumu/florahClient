@@ -166,10 +166,10 @@ const heroSlides = [
     headline: "The Reliable Partner",
   },
 ];
-let { data, pending, error } = await useFetch("/api/home");
+const { data, error } = await useFetch("/api/home");
 
-let practiceAreas = computed(() => data.value?.practices ?? []);
-let articles = computed(() => data.value?.articles ?? []);
+const practiceAreas = computed(() => data.value?.practices ?? []);
+const articles = computed(() => data.value?.articles ?? []);
 
 const requestUrl = useRequestURL();
 const pageUrl = requestUrl.origin;

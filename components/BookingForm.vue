@@ -387,12 +387,12 @@
 </template>
 
 <script setup>
-let token = ref("");
+const token = ref("");
 const turnstile = ref(null);
 const isTurnstileVerified = computed(() => Boolean(token.value));
 
 const save = ref(false);
-let props = defineProps({
+const props = defineProps({
   message: {
     type: String,
     required: true,
@@ -435,9 +435,9 @@ async function handleSubmit() {
     message: form.message,
     "cf-turnstile-response": token.value,
   };
-  let toast = useToast();
+  const toast = useToast();
   try {
-    let response = await $fetch(
+    const response = await $fetch(
       "https://api.floracadvocates.co.keapi/add/new/enquiry",
       {
         method: "POST",

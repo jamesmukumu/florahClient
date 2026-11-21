@@ -12,7 +12,7 @@
 
 
 <script setup>
-let toaster = {position:"top-right"}
+const toaster = {position:"top-right"}
 
 useHead({
   script: [

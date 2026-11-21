@@ -191,3 +191,6 @@
    </div>
 </footer>
 </template>
+<script setup>
+defineOptions({ name: "SiteFooter" });
+</script>

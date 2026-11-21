@@ -267,7 +267,7 @@
 </template>
 
 <script setup>
-let { data, pending, error } = await useFetch("/api/patners");
+const { data } = await useFetch("/api/patners");
 const partners = computed(() => data.value ?? []);
 
 const requestUrl = useRequestURL();

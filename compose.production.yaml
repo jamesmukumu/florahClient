@@ -1,0 +1,10 @@
+services:
+  app:
+    image: ghcr.io/jamesmukumu/florahclient:${IMAGE_TAG:?IMAGE_TAG must be set}
+    container_name: flora-advocates
+    ports:
+      - "127.0.0.1:3000:3000"
+    env_file:
+      - .env
+    init: true
+    restart: unless-stopped

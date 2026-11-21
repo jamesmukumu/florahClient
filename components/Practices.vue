@@ -80,7 +80,8 @@
 </template>
 
 <script setup>
-let config = useRuntimeConfig();
+defineOptions({ name: "PracticeAreas" });
+const config = useRuntimeConfig();
 defineProps({
   practiceAreas: {
     type: Array,

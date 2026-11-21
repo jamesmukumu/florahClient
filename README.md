@@ -1,5 +1,8 @@
 # Flora C & Company Advocates
 
+For CI/CD, VPS preparation, private GHCR access, Nginx proxy configuration,
+and the automatic rollback behavior, see [docs/VPS_DEPLOYMENT.md](docs/VPS_DEPLOYMENT.md).
+
 ## Docker usage
 
 Run these commands from the `client` directory. Create `.env` from `.env.example`

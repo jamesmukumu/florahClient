@@ -1,6 +1,6 @@
 import {Pool} from 'pg'
 let config = useRuntimeConfig()
-export let pool = new Pool({
+export const pool = new Pool({
 host:config.db.host || process.env.DB_HOST,
 port:config.db.port || process.env.DB_PORT,
 user:config.db.user || process.env.DB_USER,
