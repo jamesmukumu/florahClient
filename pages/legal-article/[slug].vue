@@ -61,15 +61,15 @@
 </template>
 
 <script setup>
-let route = useRoute();
+const route = useRoute();
 
-let { data, pending, error } = await useFetch("/api/article", {
+const { data } = await useFetch("/api/article", {
   query: {
     slug: route.params.slug,
   },
 });
 
-let article = computed(() => data.value ?? {});
+const article = computed(() => data.value ?? {});
 
 const requestUrl = useRequestURL();
 const pageUrl = `${requestUrl.origin}/legal-article/${route.params.slug}`;

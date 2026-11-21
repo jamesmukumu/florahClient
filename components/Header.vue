@@ -162,6 +162,7 @@
 </template>
 
 <script setup>
+defineOptions({ name: "SiteHeader" });
 const isOpen = ref(false);
 const isTransparent = ref(false);
 const route = useRoute();

@@ -71,7 +71,7 @@
           <div class="mt-8 text-gray-500">
             <NuxtLink to="/" class="hover:text-[#16386c]"> Home </NuxtLink>
             <span class="mx-2">|</span>
-            <NuxtLink to="/patner" class="hover:text-[#16386c]">
+            <NuxtLink to="/patners" class="hover:text-[#16386c]">
               Team
             </NuxtLink>
             <span class="mx-2">|</span>
@@ -270,7 +270,7 @@ const activeTabContent = computed(() => {
 
   return workContent || "No work details available.";
 });
-let bookAppointment = () => navigateTo("/book/appointment");
+const bookAppointment = () => navigateTo("/book/appointment");
 const imageRevealRef = ref(null);
 const hasImageEntered = ref(false);
 

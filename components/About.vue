@@ -47,3 +47,6 @@
     </div>
   </section>
 </template>
+<script setup>
+defineOptions({ name: "FirmAbout" });
+</script>

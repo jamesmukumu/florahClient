@@ -101,9 +101,9 @@
 </template>
 
 <script setup>
-let patnersData = ref([]);
-let config = useRuntimeConfig();
-let { data, pending, error } = await useFetch("/api/patners");
+const patnersData = ref([]);
+const config = useRuntimeConfig();
+const { data } = await useFetch("/api/patners");
 
 patnersData.value = data.value;
 

@@ -1,6 +1,6 @@
 import {pool} from '../utils/pool'
 
-export default eventHandler(async(event)=>{
+export default eventHandler(async()=>{
 try{
 let {rows} = await pool.query(
 `

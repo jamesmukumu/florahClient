@@ -1,6 +1,6 @@
 import { pool } from "../utils/pool";
 
-export default eventHandler(async (event) => {
+export default eventHandler(async () => {
   let [{ rows: articles }, { rows: partners }] = await Promise.all([
     pool.query(
       `

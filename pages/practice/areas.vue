@@ -98,9 +98,9 @@
 </template>
 
 <script setup>
-let { data, pending, error } = await useFetch("/api/home");
+const { data } = await useFetch("/api/home");
 
-let practiceAreas = computed(() => data.value.practices ?? []);
+const practiceAreas = computed(() => data.value.practices ?? []);
 
 const requestUrl = useRequestURL();
 const pageUrl = `${requestUrl.origin}/practice/areas`;
