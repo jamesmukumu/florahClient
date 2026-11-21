@@ -41,10 +41,12 @@ jobs:
         run: docker build --build-arg VERSION="${GITHUB_SHA}" --tag flora-advocates:ci .
 
       - name: Scan container image
-        uses: aquasecurity/trivy-action@v0.33.1
-        with:
-          image-ref: flora-advocates:ci
-          format: table
-          exit-code: "1"
-          ignore-unfixed: true
-          severity: HIGH,CRITICAL
+        # Run the official Trivy image directly to avoid the binary installer.
+        # Pin the Linux amd64 image for Trivy 0.65.0 (ubuntu-24.04 runners).
+        run: |
+          docker run --rm \
+            --volume /var/run/docker.sock:/var/run/docker.sock \
+            aquasec/trivy:0.65.0@sha256:16f1ee8462d0ba07dd69239150d60ba7b591c55e02dfc33a3fc19710b861d180 \
+            image --image-src docker --format table --exit-code 1 \
+            --ignore-unfixed --severity HIGH,CRITICAL \
+            flora-advocates:ci
