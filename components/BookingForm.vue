@@ -438,7 +438,7 @@ async function handleSubmit() {
   const toast = useToast();
   try {
     const response = await $fetch(
-      "https://api.floracadvocates.co.keapi/add/new/enquiry",
+      "https://api.floracadvocates.co.ke/api/add/new/enquiry",
       {
         method: "POST",
         body: payload,
