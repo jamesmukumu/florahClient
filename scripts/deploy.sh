@@ -39,12 +39,18 @@ compose() {
 }
 
 wait_for_healthy() {
-  local attempt status
+  local attempt status response
 
   for attempt in {1..30}; do
-    status="$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}missing-healthcheck{{end}}' "${CONTAINER_NAME}" 2>/dev/null || true)"
-    if [[ "${status}" == "healthy" ]] \
-      && curl --fail --silent --show-error --max-time 10 http://127.0.0.1:3000/api/health >/dev/null \
+    status="$(docker inspect --format '{{.State.Running}}' "${CONTAINER_NAME}" 2>/dev/null || true)"
+    if [[ "${status}" != "true" ]]; then
+      echo "Container ${CONTAINER_NAME} is not running (status: ${status:-not-created})." >&2
+      docker logs --tail 50 "${CONTAINER_NAME}" || true
+      return 1
+    fi
+
+    if response="$(curl --fail --silent --show-error --max-time 10 http://127.0.0.1:3000/api/health)" \
+      && [[ "${response}" == *'"status":"ok"'* ]] \
       && curl --fail --silent --show-error --max-time 15 "${PUBLIC_HEALTH_URL}" >/dev/null; then
       return 0
     fi
