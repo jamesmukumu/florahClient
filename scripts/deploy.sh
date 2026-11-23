@@ -41,7 +41,7 @@ compose() {
 check_container_ownership() {
   local project_label
 
-  if project_label="$(docker inspect --format '{{index .Config.Labels "com.docker.compose.project"}}' "${CONTAINER_NAME}" 2>/dev/null)"; then
+  if project_label="$(docker container inspect --format '{{index .Config.Labels "com.docker.compose.project"}}' "${CONTAINER_NAME}" 2>/dev/null)"; then
     if [[ "${project_label}" != "${COMPOSE_PROJECT_NAME}" ]]; then
       echo "Container ${CONTAINER_NAME} belongs to project ${project_label:-none}, not ${COMPOSE_PROJECT_NAME}; remove it manually once before deploying." >&2
       exit 1
