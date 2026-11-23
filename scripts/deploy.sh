@@ -2,7 +2,7 @@
 
 set -Eeuo pipefail
 
-APP_DIR="${APP_DIR:-/opt/flora-advocates}"
+APP_DIR="${APP_DIR:-/opt/florahClient}"
 COMPOSE_FILE="${APP_DIR}/compose.production.yaml"
 DEPLOY_ENV="${APP_DIR}/.deploy.env"
 CONTAINER_NAME="${CONTAINER_NAME:-floraadvocateswebsite}"

@@ -87,8 +87,8 @@ jobs:
           VPS_PORT: ${{ secrets.VPS_PORT }}
           VPS_USER: ${{ secrets.VPS_USER }}
         run: |
-          ssh -p "${VPS_PORT}" -o StrictHostKeyChecking=yes "${VPS_USER}@${VPS_HOST}" 'install -d -m 750 /opt/flora-advocates'
-          scp -P "${VPS_PORT}" -o StrictHostKeyChecking=yes compose.production.yaml scripts/deploy.sh "${VPS_USER}@${VPS_HOST}:/opt/flora-advocates/"
+          ssh -p "${VPS_PORT}" -o StrictHostKeyChecking=yes "${VPS_USER}@${VPS_HOST}" 'install -d -m 750 /opt/florahClient'
+          scp -P "${VPS_PORT}" -o StrictHostKeyChecking=yes compose.production.yaml scripts/deploy.sh "${VPS_USER}@${VPS_HOST}:/opt/florahClient/"
 
       - name: Deploy and verify release
         env:
@@ -97,4 +97,4 @@ jobs:
           VPS_USER: ${{ secrets.VPS_USER }}
           IMAGE_TAG: ${{ needs.publish.outputs.image_tag }}
         run: |
-          ssh -p "${VPS_PORT}" -o StrictHostKeyChecking=yes "${VPS_USER}@${VPS_HOST}" "chmod 700 /opt/flora-advocates/deploy.sh && /opt/flora-advocates/deploy.sh '${IMAGE_TAG}'"
+          ssh -p "${VPS_PORT}" -o StrictHostKeyChecking=yes "${VPS_USER}@${VPS_HOST}" "chmod 700 /opt/florahClient/deploy.sh && /opt/florahClient/deploy.sh '${IMAGE_TAG}'"
