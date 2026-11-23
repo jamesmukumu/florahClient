@@ -13,17 +13,17 @@ build arguments. For example, in PowerShell:
 Copy-Item .env.example .env
 # Edit .env before starting the container.
 docker build -t flora-advocates .
-docker run -d --init --name flora-advocates -p 3000:3000 --env-file .env flora-advocates
-docker logs -f flora-advocates
-docker stop flora-advocates
+docker run -d --init --name floraadvocateswebsite -p 3000:3000 --env-file .env flora-advocates
+docker logs -f floraadvocateswebsite
+docker stop floraadvocateswebsite
 ```
 
 Alternatively, run `docker compose up -d --build`, view logs with
-`docker compose logs -f`, and stop with `docker compose down`. Compose uses the
-image healthcheck and does not create a database.
+`docker compose logs -f`, and stop with `docker compose down`. Compose does not
+create a database.
 
-The server listens on port 3000. `/api/health` checks process liveness, not
-database connectivity. The image runs the Nitro Node server with SSR and the
+The server listens on port 3000. `/api/health` checks database connectivity.
+The image runs the Nitro Node server with SSR and the
 runtime sitemap; it is not a static export.
 
 Set these variables in `.env` for the container, or in your deployment's runtime
@@ -50,5 +50,5 @@ server certificate; configure verified TLS separately if required.
 The Vercel Analytics and Speed Insights integrations are unchanged and their
 scripts may not be available outside Vercel. Consider making them conditional
 or removing them for non-Vercel deployments. The existing database API handlers
-may return caught errors as successful HTTP responses; the healthcheck does
-not detect database failures.
+may return caught errors as successful HTTP responses; `/api/health` checks
+database connectivity separately.

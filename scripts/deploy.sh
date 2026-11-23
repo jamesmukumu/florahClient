@@ -5,8 +5,7 @@ set -Eeuo pipefail
 APP_DIR="${APP_DIR:-/opt/florahClient}"
 COMPOSE_FILE="${APP_DIR}/compose.production.yaml"
 DEPLOY_ENV="${APP_DIR}/.deploy.env"
-PUBLIC_HEALTH_URL="${PUBLIC_HEALTH_URL:-https://www.floracadvocates.co.ke/api/health}"
-CONTAINER_NAME="${CONTAINER_NAME:-flora-advocates}"
+CONTAINER_NAME="${CONTAINER_NAME:-floraadvocateswebsite}"
 NEW_IMAGE_TAG="${1:?Provide the 40-character Git commit SHA to deploy}"
 
 if [[ ! "${NEW_IMAGE_TAG}" =~ ^[a-f0-9]{40}$ ]]; then
@@ -27,6 +26,7 @@ if [[ -f "${DEPLOY_ENV}" ]]; then
 fi
 
 PREVIOUS_IMAGE_TAG="${IMAGE_TAG:-}"
+COMPOSE_PROJECT_NAME="${COMPOSE_PROJECT_NAME:-flora-advocates}"
 
 write_deploy_env() {
   local image_tag="$1"
@@ -35,7 +35,18 @@ write_deploy_env() {
 }
 
 compose() {
-  docker compose --env-file "${DEPLOY_ENV}" -f "${COMPOSE_FILE}" "$@"
+  docker compose --project-name "${COMPOSE_PROJECT_NAME}" --env-file "${DEPLOY_ENV}" -f "${COMPOSE_FILE}" "$@"
+}
+
+check_container_ownership() {
+  local project_label
+
+  if project_label="$(docker inspect --format '{{index .Config.Labels "com.docker.compose.project"}}' "${CONTAINER_NAME}" 2>/dev/null)"; then
+    if [[ "${project_label}" != "${COMPOSE_PROJECT_NAME}" ]]; then
+      echo "Container ${CONTAINER_NAME} belongs to project ${project_label:-none}, not ${COMPOSE_PROJECT_NAME}; remove it manually once before deploying." >&2
+      exit 1
+    fi
+  fi
 }
 
 wait_for_healthy() {
@@ -50,8 +61,7 @@ wait_for_healthy() {
     fi
 
     if response="$(curl --fail --silent --show-error --max-time 10 http://127.0.0.1:3000/api/health)" \
-      && [[ "${response}" == *'"status":"ok"'* ]] \
-      && curl --fail --silent --show-error --max-time 15 "${PUBLIC_HEALTH_URL}" >/dev/null; then
+      && [[ "${response}" == *'"status":"ok"'* ]]; then
       return 0
     fi
 
@@ -69,6 +79,8 @@ deploy() {
   compose up -d --no-build --remove-orphans app
   wait_for_healthy
 }
+
+check_container_ownership
 
 if deploy "${NEW_IMAGE_TAG}"; then
   docker image prune --force --filter dangling=true
