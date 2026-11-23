@@ -102,12 +102,13 @@ protection on `master` to require the `Verify application` check before merge.
 
 ## Release verification and rollback
 
-The deployment script waits for Docker health, then checks both
-`http://127.0.0.1:3000/api/health` and
-`https://www.floracadvocates.co.ke/api/health`. That endpoint executes
-`SELECT 1` against PostgreSQL, so a missing database connection returns HTTP
-503. A failed release automatically starts the previous image tag and reports
-the GitHub Actions job as failed.
+The deployment script verifies that `floraadvocateswebsite` is running and that
+`http://127.0.0.1:3000/api/health` returns a body containing `"status":"ok"`.
+That endpoint executes `SELECT 1` against PostgreSQL, so a missing database
+connection returns HTTP 503. If an existing container with this name belongs
+to another Compose project or has no Compose project label, remove it manually
+once before deploying. A failed release automatically starts the previous
+image tag and reports the GitHub Actions job as failed.
 
 To inspect an incident on the VPS:
 
